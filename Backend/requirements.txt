@@ -1,2 +1,4 @@
 fastapi
 uvicorn
+websockets==12.0
+asyncio

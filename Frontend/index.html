@@ -1,12 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Buscaminas</title>
-    <script src="/static/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas Online</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Buscaminas</h1>
-    <button onclick="iniciarJuego()">Iniciar Juego</button>
-    <div id="tablero"></div>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Buscaminas Online</h1>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span id="statusText">Desconectado</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Panel de configuración -->
+            <section class="config-panel" id="configPanel">
+                <h2>Configuración del Juego</h2>
+                <div class="config-grid">
+                    <div class="input-group">
+                        <label for="filas">Filas:</label>
+                        <input type="number" id="filas" min="5" max="30" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="columnas">Columnas:</label>
+                        <input type="number" id="columnas" min="5" max="30" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="minas">Minas:</label>
+                        <input type="number" id="minas" min="1" value="15">
+                    </div>
+                </div>
+                <button id="nuevoJuegoBtn" class="btn btn-primary">Nuevo Juego</button>
+            </section>
+
+            <!-- Panel de información del juego -->
+            <section class="game-info" id="gameInfo" style="display: none;">
+                <div class="info-item">
+                    <span class="label">Minas:</span>
+                    <span id="minasTotal">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Reveladas:</span>
+                    <span id="celdasReveladas">0</span>
+                    /
+                    <span id="celdasTotales">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Estado:</span>
+                    <span id="estadoJuego" class="estado-jugando">Jugando</span>
+                </div>
+            </section>
+
+            <!-- Controles del juego -->
+            <section class="game-controls" id="gameControls" style="display: none;">
+                <button id="resolverBtn" class="btn btn-secondary">Ver Solución</button>
+                <button id="reiniciarBtn" class="btn btn-primary">Reiniciar</button>
+            </section>
+
+            <!-- Tablero del juego -->
+            <section class="game-board-container">
+                <div id="gameBoard" class="game-board"></div>
+            </section>
+
+            <!-- Mensajes -->
+            <section class="messages" id="messages">
+                <div id="messageContainer"></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>🎮 Buscaminas Online - WebSocket Connection</p>
+        </footer>
+    </div>
+
+    <!-- Modal de resultado -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Resultado</h3>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Mensaje del juego</p>
+                <div class="modal-actions">
+                    <button id="modalNewGame" class="btn btn-primary">Nuevo Juego</button>
+                    <button id="modalClose" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
